@@ -298,13 +298,13 @@ namespace Ember
 
 	bool ConfigService::loadSavedConfig ( const std::string& filename, const StringConfigMap& commandLineSettings )
 	{
-		S_LOG_INFO ( "Loading shared config file from " << getSharedConfigDirectory() + "/"+ filename << "." );
-		bool success = mGlobalConfig->readFromFile ( getSharedConfigDirectory() + "/"+ filename, varconf::GLOBAL );
-		std::string userConfigPath ( getHomeDirectory() + "/" + filename );
+		S_LOG_INFO ( "Loading shared config file from " << getSharedConfigDirectory() + filename << "." );
+		bool success = mGlobalConfig->readFromFile ( getSharedConfigDirectory() + filename, varconf::GLOBAL );
+		std::string userConfigPath ( getHomeDirectory() + filename );
 		std::ifstream file ( userConfigPath.c_str() );
 		if ( !file.fail() )
 		{
-			S_LOG_INFO ( "Loading user config file from "<< getHomeDirectory() + "/" + filename <<"." );
+			S_LOG_INFO ( "Loading user config file from "<< userConfigPath <<"." );
 			try
 			{
 				mUserConfig->parseStream ( file, varconf::USER );
@@ -477,7 +477,7 @@ namespace Ember
 	const std::string& ConfigService::getSharedConfigDirectory() const
 	{
 #ifdef __APPLE__
-		static std::string path ( getSharedDataDirectory() + "/etc/ember/" );
+		static std::string path ( getSharedDataDirectory() + "etc/ember/" );
 		return path;
 #else
 		return mEtcDir;
@@ -511,11 +511,11 @@ namespace Ember
 		//look for a media channel key in the config, and if found use that, else use the version of ember as a standard path
 		if ( hasItem ( "wfut", "channel" ) )
 		{
-			path = getEmberDataDirectory() + "/" + static_cast<std::string> ( getValue ( "wfut", "channel" ) ) + "/";
+			path = getEmberDataDirectory() + static_cast<std::string> ( getValue ( "wfut", "channel" ) ) + "/";
 		}
 		else
 		{
-			path = getEmberDataDirectory() + "/ember-media-" + std::string ( VERSION ) + "/";
+			path = getEmberDataDirectory() + "ember-media-" + std::string ( VERSION ) + "/";
 		}
 		return path;
 	}
@@ -523,13 +523,13 @@ namespace Ember
 
 	const std::string& ConfigService::getUserMediaDirectory() const
 	{
-		static std::string path ( getHomeDirectory() + "/user-media/" );
+		static std::string path ( getHomeDirectory() + "user-media/" );
 		return path;
 	}
 
 	const std::string& ConfigService::getSharedMediaDirectory() const
 	{
-		static std::string path ( getSharedDataDirectory() + "/media/shared/" );
+		static std::string path ( getSharedDataDirectory() + "media/shared/" );
 		return path;
 	}
 
