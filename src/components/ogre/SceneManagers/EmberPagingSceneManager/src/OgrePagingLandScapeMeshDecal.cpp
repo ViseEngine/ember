@@ -67,7 +67,7 @@ PagingLandScapeMeshDecal::PagingLandScapeMeshDecal( const String& name,
 													const Vector2& size,
 													const String& sceneMgrInstanceName )
 	: MovableObject( name )
-	, material_( MaterialManager::getSingleton().getByName( materialName ) )
+	, material_( MaterialManager::getSingleton().getByName( materialName ).staticCast<Material>() )
 	, size_( size )
 	, sceneMgr_( Root::getSingleton().getSceneManager( sceneMgrInstanceName ) )
 	, position_( Vector3::ZERO )

@@ -168,11 +168,7 @@ public:
 	void removeLodDistance(float distVal);
 };
 
-class LodDefinitionPtr
-{
-	virtual ~LodDefinitionPtr();
-	Ember::OgreView::Lod::LodDefinition* get();
-};
+typedef Ogre::SharedPtr<LodDefinition> LodDefinitionPtr;
 
 }
 }

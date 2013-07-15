@@ -47,10 +47,10 @@ namespace Ogre {
         */
         static MeshManager& getSingleton(void);
 
-		Ogre::MeshPtr load(const std::string& name, 
+		Ogre::ResourcePtr load(const std::string& name, 
              const std::string& group);
-		Ogre::MeshPtr getByName(const std::string& name);
-		Ogre::MeshPtr create(const std::string& name, const std::string& group);
+		Ogre::ResourcePtr getByName(const std::string& name);
+		Ogre::ResourcePtr create(const std::string& name, const std::string& group);
     };
 
 }

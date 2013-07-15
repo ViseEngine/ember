@@ -98,7 +98,7 @@ unsigned int GrassLayer::_populateGrassList(PageInfo page, float *posBuff, unsig
 void GrassLayerBase::setMaterialName(const String &matName)
 {
 	if (material.isNull() || matName != material->getName()){
-		material = MaterialManager::getSingleton().getByName(matName);
+		material = MaterialManager::getSingleton().getByName(matName).staticCast<Material>();
 		if (material.isNull())
 			OGRE_EXCEPT(Exception::ERR_INVALIDPARAMS, "The specified grass material does not exist", "GrassLayer::setMaterialName()");
 		shaderNeedsUpdate = true;
@@ -474,7 +474,7 @@ void GrassLayerBase::_updateShaders()
 			const String matName = material->getName() + "_" + vsName;
 
 			//Check if the desired material already exists (if not, create it)
-			MaterialPtr tmpMat = MaterialManager::getSingleton().getByName(matName);
+			MaterialPtr tmpMat = MaterialManager::getSingleton().getByName(matName).staticCast<Material>();
 			if (tmpMat.isNull())
 			{
 				//Clone the original material
@@ -486,7 +486,7 @@ void GrassLayerBase::_updateShaders()
 
 				//Check if the desired shader already exists (if not, compile it)
 				String shaderLanguage = ShaderHelper::getShaderLanguage();
-				HighLevelGpuProgramPtr vertexShader = HighLevelGpuProgramManager::getSingleton().getByName(vsName);
+				HighLevelGpuProgramPtr vertexShader = HighLevelGpuProgramManager::getSingleton().getByName(vsName).staticCast<HighLevelGpuProgram>();
 				if (vertexShader.isNull())
 				{
 

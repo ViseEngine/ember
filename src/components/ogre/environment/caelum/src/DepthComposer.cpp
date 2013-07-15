@@ -299,7 +299,7 @@ namespace Caelum
 		Ogre::String uniqueId = Ogre::StringConverter::toString ((size_t)this);
 
         // Not cloned!
-        mDepthRenderMaterial = MaterialManager::getSingleton ().getByName ("Caelum/DepthRender");
+        mDepthRenderMaterial = MaterialManager::getSingleton ().getByName ("Caelum/DepthRender").staticCast<Material>();
         mDepthRenderMaterial->load();
         if (!mDepthRenderMaterial->getBestTechnique ()) {
             CAELUM_THROW_UNSUPPORTED_EXCEPTION (

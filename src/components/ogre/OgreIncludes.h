@@ -51,7 +51,6 @@ namespace Ogre {
     typedef unsigned int uint;
 	typedef unsigned long ulong;
 
-
 // Pre-declare classes
 // Allows use of pointers in header files without including individual .h
 // so decreases dependencies between files
@@ -60,7 +59,6 @@ namespace Ogre {
     class AnimationState;
     class AnimationStateSet;
     class AnimationTrack;
-    class Any;
     class Archive;
     class ArchiveFactory;
     class ArchiveManager;
@@ -79,7 +77,9 @@ namespace Ogre {
     template <typename T> class ControllerFunction;
     class ControllerManager;
     template <typename T> class ControllerValue;
+	class DefaultWorkQueue;
     class Degree;
+	class DepthBuffer;
     class DynLib;
     class DynLibManager;
     class EdgeData;
@@ -88,14 +88,10 @@ namespace Ogre {
     class ErrorDialog;
     class ExternalTextureSourceManager;
     class Factory;
-    class Font;
-    class FontPtr;
-    class FontManager;
     struct FrameEvent;
     class FrameListener;
     class Frustum;
     class GpuProgram;
-    class GpuProgramPtr;
     class GpuProgramManager;
 	class GpuProgramUsage;
     class HardwareIndexBuffer;
@@ -104,10 +100,16 @@ namespace Ogre {
 	class HardwarePixelBuffer;
     class HardwarePixelBufferSharedPtr;
 	class HighLevelGpuProgram;
-    class HighLevelGpuProgramPtr;
 	class HighLevelGpuProgramManager;
 	class HighLevelGpuProgramFactory;
     class IndexData;
+	class InstanceBatch;
+	class InstanceBatchHW;
+	class InstanceBatchHW_VTF;
+	class InstanceBatchShader;
+	class InstanceBatchVTF;
+	class InstanceManager;
+	class InstancedEntity;
     class IntersectionSceneQuery;
     class IntersectionSceneQueryListener;
     class Image;
@@ -115,17 +117,16 @@ namespace Ogre {
     class Light;
     class Log;
     class LogManager;
+	class LodStrategy;
 	class ManualResourceLoader;
 	class ManualObject;
     class Material;
-    class MaterialPtr;
     class MaterialManager;
     class Math;
     class Matrix3;
     class Matrix4;
     class MemoryManager;
     class Mesh;
-    class MeshPtr;
     class MeshSerializer;
     class MeshSerializerImpl;
     class MeshManager;
@@ -136,11 +137,6 @@ namespace Ogre {
 	class NodeKeyFrame;
 	class NumericAnimationTrack;
 	class NumericKeyFrame;
-    class Overlay;
-    class OverlayContainer;
-    class OverlayElement;
-    class OverlayElementFactory;
-    class OverlayManager;
     class Particle;
     class ParticleAffector;
     class ParticleAffectorFactory;
@@ -156,12 +152,13 @@ namespace Ogre {
     class PixelBox;
     class Plane;
     class PlaneBoundedVolume;
-	class Plugin;
+    class Plugin;
+    class PMWorker;
+    class PMInjector;
     class Pose;
-    class ProgressiveMesh;
+    class ProgressiveMeshGenerator;
     class Profile;
 	class Profiler;
-	class PSSMShadowCameraSetup;
     class Quaternion;
 	class Radian;
     class Ray;
@@ -174,6 +171,7 @@ namespace Ogre {
 	class RenderQueueInvocation;
 	class RenderQueueInvocationSequence;
     class RenderQueueListener;
+	class RenderObjectListener;
     class RenderSystem;
     class RenderSystemCapabilities;
     class RenderSystemCapabilitiesManager;
@@ -205,12 +203,12 @@ namespace Ogre {
     class SimpleRenderable;
     class SimpleSpline;
     class Skeleton;
-    class SkeletonPtr;
     class SkeletonInstance;
     class SkeletonManager;
     class Sphere;
     class SphereSceneQuery;
 	class StaticGeometry;
+	class StreamSerialiser;
     class StringConverter;
     class StringInterface;
     class SubEntity;
@@ -221,10 +219,10 @@ namespace Ogre {
 	class ExternalTextureSource;
     class TextureUnitState;
     class Texture;
-    class TexturePtr;
     class TextureManager;
     class TransformKeyFrame;
 	class Timer;
+	class UserObjectBindings;
     class Vector2;
     class Vector3;
     class Vector4;
@@ -235,15 +233,26 @@ namespace Ogre {
     class VertexDeclaration;
 	class VertexMorphKeyFrame;
     class WireBoundingBox;
+	class WorkQueue;
     class Compositor;
     class CompositorManager;
     class CompositorChain;
     class CompositorInstance;
+	class CompositorLogic;
     class CompositionTechnique;
     class CompositionPass;
     class CompositionTargetPass;
-    class MemoryDataStream;
-    class ConfigFile;
-    class OverlaySystem;
+	class CustomCompositionPass;
+
+    template<typename T> class SharedPtr;
+    typedef SharedPtr<Compositor> CompositorPtr;
+    typedef SharedPtr<GpuProgram> GpuProgramPtr;
+    typedef SharedPtr<HighLevelGpuProgram> HighLevelGpuProgramPtr;
+    typedef SharedPtr<Material> MaterialPtr;
+    typedef SharedPtr<Mesh> MeshPtr;
+    typedef SharedPtr<PatchMesh> PatchMeshPtr;
+    typedef SharedPtr<Resource> ResourcePtr;
+    typedef SharedPtr<Skeleton> SkeletonPtr;
+    typedef SharedPtr<Texture> TexturePtr;
 }
 #endif //EMBEROGRE_OGREINCLUDES_H

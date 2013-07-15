@@ -127,11 +127,11 @@ namespace Ogre
             const String filename = opt->LandScape_filename;
             const String name = filename +
                 "Visibility";
-            mVisibilityMaterial = MaterialManager::getSingleton().getByName (name);
+            mVisibilityMaterial = MaterialManager::getSingleton().getByName (name).staticCast<Material>();
             if (mVisibilityMaterial.isNull())
             {
                 mVisibilityMaterial = MaterialManager::getSingleton().create (name, 
-                                                                              opt->groupName);
+                                                                              opt->groupName).staticCast<Material>();
 
                 TextureUnitState *tu0 = mVisibilityMaterial->getTechnique (0)->
                                         getPass (0)->createTextureUnitState ();
@@ -170,7 +170,7 @@ namespace Ogre
 		        // Assign the texture to the alpha map
 		        mVisImage.loadDynamicImage(TexData, mTileWidth, mTileHeight, 1, PF_R8G8B8A8, true);
                 mVisData = mVisImage.getData();
-                mVisTex = TextureManager::getSingleton().getByName (filename + ".Visibility");
+                mVisTex = TextureManager::getSingleton().getByName (filename + ".Visibility").staticCast<Texture>();
             }
         }
         mVisibilityMaterial->load();

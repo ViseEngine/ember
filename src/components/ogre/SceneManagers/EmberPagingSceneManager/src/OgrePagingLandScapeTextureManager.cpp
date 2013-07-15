@@ -351,11 +351,11 @@ namespace Ogre
     {
     	PagingLandScapeOptions * const opt = mOptions;
         const String mapName =  String("Small") + opt->image_filename;
-        mMapMaterial = MaterialManager::getSingleton().getByName (mapName);
+        mMapMaterial = MaterialManager::getSingleton().getByName (mapName).staticCast<Material>();
         if (mMapMaterial.isNull())
         {
             MaterialPtr matTemplate = MaterialManager::getSingleton().
-                            getByName (String ("PagingLandScape.Small.Template"));
+                            getByName (String ("PagingLandScape.Small.Template")).staticCast<Material>();
             mMapMaterial = matTemplate ->clone (mapName);
             const String texname(opt->image_filename + ".Small." + 
                                 opt->TextureExtension);

@@ -384,15 +384,15 @@ BatchedGeometry::SubBatch::SubBatch(BatchedGeometry *parent, SubEntity *ent)
 	requireVertexColors = false;
 
 	// Material must always exist
-	Material *origMat = ((MaterialPtr)MaterialManager::getSingleton().getByName(ent->getMaterialName())).getPointer();
+	Material *origMat = MaterialManager::getSingleton().getByName(ent->getMaterialName()).staticCast<Material>().getPointer();
 	if (origMat) {
-		material = MaterialManager::getSingleton().getByName(getMaterialClone(*origMat)->getName());
+		material = MaterialManager::getSingleton().getByName(getMaterialClone(*origMat)->getName()).staticCast<Material>();
 	} else {
 		MaterialManager::ResourceCreateOrRetrieveResult result = MaterialManager::getSingleton().createOrRetrieve("PagedGeometry_Batched_Material", "General");
 		if (result.first.isNull()) {
 			OGRE_EXCEPT(Exception::ERR_INVALIDPARAMS, "BatchedGeometry failed to create a material for entity with invalid material.", "BatchedGeometry::SubBatch::SubBatch(BatchedGeometry *parent, SubEntity *ent)");
 		}
-		material = result.first;
+		material = result.first.staticCast<Material>();
 	}
 
 	//Setup vertex/index data structure
@@ -437,7 +437,7 @@ BatchedGeometry::SubBatch::~SubBatch()
 Material *BatchedGeometry::SubBatch::getMaterialClone(Material &mat)
 {
 	String clonedName = mat.getName() + "_Batched";
-	MaterialPtr clonedMat = MaterialManager::getSingleton().getByName(clonedName);
+	MaterialPtr clonedMat = MaterialManager::getSingleton().getByName(clonedName).staticCast<Material>();
 	if (clonedMat.isNull())
 		clonedMat = mat.clone(clonedName);
 	

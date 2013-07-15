@@ -451,7 +451,7 @@ void WindBatchPage::_updateShaders()
 		}
 
 		//Search for the desired material
-		MaterialPtr generatedMaterial = MaterialManager::getSingleton().getByName(materialSignature.str());
+		MaterialPtr generatedMaterial = MaterialManager::getSingleton().getByName(materialSignature.str()).staticCast<Material>();
 		if (generatedMaterial.isNull()){
 			//Clone the material
 			generatedMaterial = mat->clone(materialSignature.str());

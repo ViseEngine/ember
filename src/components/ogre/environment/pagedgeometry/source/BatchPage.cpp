@@ -433,7 +433,7 @@ void BatchPage::_updateShaders()
 		std::string fragmentProgramName("BatchFragStandard");
 		String fragmentProgSource;
 		//We also need a fragment program to go with our vertex program. Especially on ATI cards on Linux where we can't mix shaders and the fixed function pipeline.
-		HighLevelGpuProgramPtr fragShader = static_cast<HighLevelGpuProgramPtr>(HighLevelGpuProgramManager::getSingleton().getByName(fragmentProgramName));
+		HighLevelGpuProgramPtr fragShader = HighLevelGpuProgramManager::getSingleton().getByName(fragmentProgramName).staticCast<HighLevelGpuProgram>();
 		if (fragShader.isNull()){
 			Pass *pass = mat->getTechnique(0)->getPass(0);
 
@@ -489,7 +489,7 @@ void BatchPage::_updateShaders()
 		}
 
 		//Search for the desired material
-		MaterialPtr generatedMaterial = MaterialManager::getSingleton().getByName(materialSignature.str());
+		MaterialPtr generatedMaterial = MaterialManager::getSingleton().getByName(materialSignature.str()).staticCast<Material>();
 		if (generatedMaterial.isNull()){
 			//Clone the material
 			generatedMaterial = mat->clone(materialSignature.str());

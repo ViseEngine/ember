@@ -202,7 +202,7 @@ bool Water::initialize()
 
 		{
 			Viewport *v = rttTex->addViewport( &mCamera );
-			Ogre::MaterialPtr mat = MaterialManager::getSingleton().getByName("Examples/FresnelReflectionRefraction");
+			Ogre::MaterialPtr mat = MaterialManager::getSingleton().getByName("Examples/FresnelReflectionRefraction").staticCast<Material>();
 			if (!mat.isNull()) {
 				mat->getTechnique(0)->getPass(0)->getTextureUnitState(2)->setTextureName("Refraction");
 				v->setOverlaysEnabled(false);
@@ -215,7 +215,7 @@ bool Water::initialize()
 		rttTex = texture->getBuffer()->getRenderTarget();
 		{
 			Viewport *v = rttTex->addViewport( &mCamera );
-			Ogre::MaterialPtr mat = MaterialManager::getSingleton().getByName("Examples/FresnelReflectionRefraction");
+			Ogre::MaterialPtr mat = MaterialManager::getSingleton().getByName("Examples/FresnelReflectionRefraction").staticCast<Material>();
 			if (!mat.isNull()) {
 				mat->getTechnique(0)->getPass(0)->getTextureUnitState(1)->setTextureName("Reflection");
 				v->setOverlaysEnabled(false);

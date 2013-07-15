@@ -53,7 +53,7 @@ void LodManager::loadLod(Ogre::MeshPtr mesh)
 	std::string lodDefName = convertMeshNameToLodName(mesh->getName());
 
 	try {
-		Ogre::ResourcePtr resource = LodDefinitionManager::getSingleton().load(lodDefName, "General");
+		Ogre::ResourcePtr resource = LodDefinitionManager::getSingleton().load(lodDefName, "General").staticCast<Ogre::Resource>();
 		const LodDefinition& def = *static_cast<const LodDefinition*>(resource.get());
 		loadLod(mesh, def);
 	} catch (const Ogre::FileNotFoundException& ex) {

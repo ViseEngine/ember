@@ -1763,10 +1763,10 @@ namespace Ogre
 			  //and the passes from our new material
 			  if(alternateMatName != "")
 			  {
-				  alternateMaterial = MaterialManager::getSingleton().getByName(alternateMatName + "_Clone");
+				  alternateMaterial = MaterialManager::getSingleton().getByName(alternateMatName + "_Clone").staticCast<Material>();
 				  if(alternateMaterial.isNull())
 				  {
-					  alternateMaterial = MaterialManager::getSingleton().getByName(alternateMatName);
+					  alternateMaterial = MaterialManager::getSingleton().getByName(alternateMatName).staticCast<Material>();
 					  if(alternateMaterial.isNull())
 					  {
 						  OGRE_EXCEPT(
@@ -1795,7 +1795,7 @@ namespace Ogre
 			  _updateSceneGraph(rttCam);
 			  renderTexture->update();
 			  renderTexture->writeContentsToFile("../../../Media/paginglandscape2/terrains/" + mOptions->LandScape_filename + "/" + textureName);
-			  TexturePtr texture = TextureManager::getSingleton().getByName(textureName);
+			  TexturePtr texture = TextureManager::getSingleton().getByName(textureName).staticCast<Texture>();
 			  if(!texture.isNull())
 				  texture->reload();
 

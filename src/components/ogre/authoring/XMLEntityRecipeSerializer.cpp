@@ -64,7 +64,7 @@ void XMLEntityRecipeSerializer::parseScript(Ogre::DataStreamPtr& stream, const O
 		}
 
 		try {
-			EntityRecipePtr entRecipe = EntityRecipeManager::getSingleton().create(name, groupName);
+			EntityRecipePtr entRecipe = EntityRecipeManager::getSingleton().create(name, groupName).staticCast<EntityRecipe>();
 			if (!entRecipe.isNull()) {
 				readRecipe(entRecipe, smElem);
 				//removed this in the trunk /ehj

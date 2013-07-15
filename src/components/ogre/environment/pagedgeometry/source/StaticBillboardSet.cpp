@@ -132,7 +132,7 @@ StaticBillboardSet::StaticBillboardSet(SceneManager *mgr, SceneNode *rootSceneNo
 
 			//First shader, simple camera-alignment
 			HighLevelGpuProgramPtr vertexShader;
-			vertexShader = HighLevelGpuProgramManager::getSingleton().getByName("Sprite_vp");
+			vertexShader = HighLevelGpuProgramManager::getSingleton().getByName("Sprite_vp").staticCast<HighLevelGpuProgram>();
 			if (vertexShader.isNull()){
 				String vertexProg;
 				if(!shaderLanguage.compare("hlsl") || !shaderLanguage.compare("cg"))
@@ -235,7 +235,7 @@ StaticBillboardSet::StaticBillboardSet(SceneManager *mgr, SceneNode *rootSceneNo
 
 			//Second shader, camera alignment and distance based fading
 			HighLevelGpuProgramPtr vertexShader2;
-			vertexShader2 = HighLevelGpuProgramManager::getSingleton().getByName("SpriteFade_vp");
+			vertexShader2 = HighLevelGpuProgramManager::getSingleton().getByName("SpriteFade_vp").staticCast<HighLevelGpuProgram>();
 			if (vertexShader2.isNull()){
 				String vertexProg2;
 				if(!shaderLanguage.compare("hlsl") || !shaderLanguage.compare("cg"))
@@ -617,7 +617,7 @@ void StaticBillboardSet::setMaterial(const String &materialName)
 					SBMaterialRef::removeMaterialRef(materialPtr);
 			}
 
-			materialPtr = MaterialManager::getSingleton().getByName(materialName);
+			materialPtr = MaterialManager::getSingleton().getByName(materialName).staticCast<Material>();
 			if (fadeEnabled) {
 				fadeMaterialPtr = getFadeMaterial(fadeVisibleDist, fadeInvisibleDist);
 				SBMaterialRef::addMaterialRef(fadeMaterialPtr, bbOrigin);
@@ -636,7 +636,7 @@ void StaticBillboardSet::setMaterial(const String &materialName)
 		}
 	} else {
 		if (materialPtr.isNull() || materialPtr->getName() != materialName){
-			materialPtr = MaterialManager::getSingleton().getByName(materialName);
+			materialPtr = MaterialManager::getSingleton().getByName(materialName).staticCast<Material>();
 			fallbackSet->setMaterialName(materialPtr->getName());
 		}
 	}

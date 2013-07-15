@@ -28,8 +28,8 @@ class LodDefinitionManager : public Ogre::ResourceManager
 public:
 	static LodDefinitionManager& getSingleton();
 	void exportScript(std::string meshName, Ember::OgreView::Lod::LodDefinitionPtr definition);
-	Ember::OgreView::Lod::LodDefinitionPtr create(const std::string& name, const std::string& group);
-	Ember::OgreView::Lod::LodDefinitionPtr getByName(const std::string& name);
+	Ogre::ResourcePtr create(const std::string& name, const std::string& group);
+	Ogre::ResourcePtr getByName(const std::string& name);
 };
 
 }
